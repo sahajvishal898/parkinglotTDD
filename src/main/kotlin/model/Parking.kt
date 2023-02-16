@@ -6,7 +6,7 @@ class Parking {
     private val parkingLot=ArrayList<Int>()
 
     init {
-        for(index in 1..lotSize)
+        for(index in 1..lotSize+1)
             parkingLot.add(1)
     }
 
@@ -18,6 +18,15 @@ class Parking {
         return false
     }
 
+    fun getSpotNumber(): Int? {
+
+        for(spot in 1..lotSize) {
+            if(parkingLot[spot]==1)
+                return spot
+        }
+        return null
+
+    }
 
 
 }
