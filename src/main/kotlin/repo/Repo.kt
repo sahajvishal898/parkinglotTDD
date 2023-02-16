@@ -2,15 +2,19 @@ package repo
 
 import model.Ticket
 
-object TicketRepo {
+object Repo {
 
     var parkingTicketNumber=0
-
+    var unParkingreceiptNumber=0
     val allTickets= mutableMapOf<Int,Ticket>()
 
     fun getTicketNumber(): Int {
         parkingTicketNumber++
         return parkingTicketNumber
+    }
+    fun getReceiptNumber(): Int {
+        unParkingreceiptNumber++
+        return unParkingreceiptNumber
     }
 
 
@@ -18,9 +22,4 @@ object TicketRepo {
         allTickets.put(ticket.getTicketNo(),ticket)
     }
 
-
-
-    fun exception(): Throwable {
-        return TODO("Provide the return value")
-    }
 }

@@ -5,13 +5,13 @@ import model.Ticket
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import repo.TicketRepo
+import repo.Repo
 
 class TicketServiceTest{
 
     @BeforeEach
     fun `clear all before each testcase`() {
-        TicketRepo.parkingTicketNumber=0
+        Repo.parkingTicketNumber=0
     }
 
 

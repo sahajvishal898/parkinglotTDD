@@ -2,7 +2,9 @@ package model
 
 import java.time.LocalDateTime
 
+
 class Ticket(private val ticketNumber:Int, private val spotNumber:Int) {
+    private val ticketDate= LocalDateTime.now()
     fun getTicketNo(): Int {
         return ticketNumber
     }
@@ -11,9 +13,9 @@ class Ticket(private val ticketNumber:Int, private val spotNumber:Int) {
         return spotNumber
     }
 
-    var date: LocalDateTime = LocalDateTime.now()
-
-
+    fun getTicketDate(): LocalDateTime {
+        return ticketDate
+    }
 
 
 }

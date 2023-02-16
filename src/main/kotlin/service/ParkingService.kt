@@ -3,15 +3,14 @@ package service
 import exceptions.CustomException
 import model.Parking
 import model.Ticket
-import repo.TicketRepo
-import repo.TicketRepo.exception
+import repo.Repo
 
 object ParkingService {
     fun parkCarAtParking(parking: Parking): Ticket {
 
 
         val ticket=TicketService.generateTicket(parking)
-        TicketRepo.addTicketToRepo(ticket)
+        Repo.addTicketToRepo(ticket)
 
         val isCarParked=parking.bookSpotAt(ticket.getSpotNumber())
 
@@ -20,8 +19,6 @@ object ParkingService {
 
         return ticket
     }
-
-
 
 
 }

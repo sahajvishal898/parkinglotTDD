@@ -1,15 +1,15 @@
 package service
 
+import exceptions.CustomException
 import model.Parking
 import model.Ticket
-import repo.TicketRepo
-import repo.TicketRepo.exception
+import repo.Repo
 
 object TicketService {
     fun generateTicket(parking: Parking): Ticket {
 
-        val ticketNumber:Int=TicketRepo.getTicketNumber()
-        val spotNumber= parking.getAvailableSpotNumber() ?: throw exception()
+        val ticketNumber:Int=Repo.getTicketNumber()
+        val spotNumber= parking.getAvailableSpotNumber() ?: throw CustomException("No spot available")
 
         val ticket=Ticket(ticketNumber,spotNumber)
         return ticket

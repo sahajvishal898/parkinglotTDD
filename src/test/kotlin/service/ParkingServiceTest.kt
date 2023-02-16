@@ -3,11 +3,18 @@ package service
 import model.Parking
 import model.Ticket
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import repo.TicketRepo
+import repo.Repo
 
 class ParkingServiceTest {
 
+    @BeforeEach
+    fun `clear all before each testcase`() {
+        Repo.allTickets.clear()
+        Repo.parkingTicketNumber=0
+
+    }
     @Test
     fun `should park the first car into first parking spot parking`() {
 
@@ -44,9 +51,12 @@ class ParkingServiceTest {
 
         Assertions.assertEquals(1, ticket1.getSpotNumber())
         Assertions.assertEquals(false, parking.isSpotAvailableAtSpot(ticket1.getSpotNumber()))
-        Assertions.assertEquals(true,TicketRepo.allTickets.containsKey(ticket1.getTicketNo()))
+        Assertions.assertEquals(true,Repo.allTickets.containsKey(ticket1.getTicketNo()))
 
     }
+
+
+
 
 
 
