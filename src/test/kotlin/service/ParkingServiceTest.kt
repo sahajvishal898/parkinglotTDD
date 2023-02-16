@@ -4,6 +4,7 @@ import model.Parking
 import model.Ticket
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import repo.TicketRepo
 
 class ParkingServiceTest {
 
@@ -32,5 +33,23 @@ class ParkingServiceTest {
         Assertions.assertEquals(2, ticket2.getSpotNumber())
         Assertions.assertEquals(false, parking.isSpotAvailableAtSpot(ticket2.getSpotNumber()))
     }
+
+
+    @Test
+    fun `should save ticket when car is parked`() {
+
+        val parking = Parking()
+
+        val ticket1: Ticket = ParkingService.parkCarAtParking(parking)
+
+        Assertions.assertEquals(1, ticket1.getSpotNumber())
+        Assertions.assertEquals(false, parking.isSpotAvailableAtSpot(ticket1.getSpotNumber()))
+        Assertions.assertEquals(true,TicketRepo.allTickets.containsKey(ticket1.getTicketNo()))
+
+    }
+
+
+
+
 
 }
