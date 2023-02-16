@@ -1,6 +1,7 @@
 package model
 
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -19,7 +20,7 @@ class ParkingTest {
 
         val isSpotAvailable: Boolean = parking.isSpotAvailable()
 
-        Assertions.assertEquals(true, isSpotAvailable)
+        assertEquals(true, isSpotAvailable)
     }
 
 
@@ -31,7 +32,7 @@ class ParkingTest {
         val spotNumber: Int? = parking.getSpotNumber()
 
         Assertions.assertNotNull(spotNumber)
-        Assertions.assertEquals(1, spotNumber)
+        assertEquals(1, spotNumber)
     }
 
 
@@ -43,7 +44,18 @@ class ParkingTest {
 
         val isSpotAvailableAtSpot: Boolean = parking.isSpotAvailableAtSpot(spotNumber)
 
-        Assertions.assertEquals(true, isSpotAvailableAtSpot)
+        assertEquals(true, isSpotAvailableAtSpot)
+    }
+
+    @Test
+    fun `should book spot at given spot number`() {
+
+        val parking = Parking()
+        val spotNumber = 2
+
+        val isBookingSpotSuccessful: Boolean = parking.bookSpotAt(spotNumber)
+
+        assertEquals(true, isBookingSpotSuccessful)
     }
 
 
