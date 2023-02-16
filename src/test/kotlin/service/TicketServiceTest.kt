@@ -9,11 +9,13 @@ import repo.Repo
 
 class TicketServiceTest{
 
+
     @BeforeEach
     fun `clear all before each testcase`() {
+        Repo.allTickets.clear()
         Repo.parkingTicketNumber=0
+        Repo.unParkingreceiptNumber=0
     }
-
 
     @Test
     fun `generate the first ticket with ticket number and spot number as 1 `(){
