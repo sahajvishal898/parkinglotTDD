@@ -35,7 +35,7 @@ class Parking {
 
         if (!isSpotAvailableAtSpot(spotNumber))
             return false
-        parkingLot[spotNumber] = 1
+        parkingLot[spotNumber] = 0
         return true
     }
 
