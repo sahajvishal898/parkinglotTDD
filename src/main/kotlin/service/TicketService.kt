@@ -9,10 +9,7 @@ object TicketService {
     fun generateTicket(parking: Parking): Ticket {
 
         val ticketNumber:Int=TicketRepo.getTicketNumber()
-        val spotNumber=parking.getAvailableSpotNumber()
-
-        if(spotNumber==null)
-            throw exception()
+        val spotNumber= parking.getAvailableSpotNumber() ?: throw exception()
 
         val ticket=Ticket(ticketNumber,spotNumber)
         return ticket

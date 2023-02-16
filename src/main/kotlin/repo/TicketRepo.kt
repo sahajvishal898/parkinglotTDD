@@ -2,11 +2,11 @@ package repo
 
 object TicketRepo {
 
-    private var ticketNumber=0
+    var parkingTicketNumber=0
 
     fun getTicketNumber(): Int {
-        ticketNumber++
-        return ticketNumber
+        parkingTicketNumber++
+        return parkingTicketNumber
     }
 
     fun exception(): Throwable {
