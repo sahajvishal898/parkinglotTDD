@@ -35,4 +35,16 @@ class ParkingTest {
     }
 
 
+    @Test
+    fun `should give true if spot available at given spot number`() {
+
+        val parking = Parking()
+        val spotNumber = 2
+
+        val isSpotAvailableAtSpot: Boolean = parking.isSpotAvailableAtSpot(spotNumber)
+
+        Assertions.assertEquals(true, isSpotAvailableAtSpot)
+    }
+
+
 }

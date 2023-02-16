@@ -25,8 +25,12 @@ class Parking {
                 return spot
         }
         return null
-
     }
+
+    fun isSpotAvailableAtSpot(spotNumber: Int): Boolean {
+        return parkingLot[spotNumber]==1
+    }
+
 
 
 }
