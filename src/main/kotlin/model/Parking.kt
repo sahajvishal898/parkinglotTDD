@@ -18,7 +18,7 @@ class Parking {
         return false
     }
 
-    fun getSpotNumber(): Int? {
+    fun getAvailableSpotNumber(): Int? {
 
         for (spot in 1..lotSize) {
             if (parkingLot[spot] == 1)

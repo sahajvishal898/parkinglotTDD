@@ -29,7 +29,7 @@ class ParkingTest {
 
         val parking = Parking()
 
-        val spotNumber: Int? = parking.getSpotNumber()
+        val spotNumber: Int? = parking.getAvailableSpotNumber()
 
         Assertions.assertNotNull(spotNumber)
         assertEquals(1, spotNumber)
