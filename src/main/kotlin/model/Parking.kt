@@ -39,7 +39,7 @@ class Parking {
         return true
     }
 
-    fun unparkVehicleFromSpot(spotNumber:Int){
+    fun unparkVehicleFromSpot(spotNumber: Int) {
         parkingLot[spotNumber] = 1
     }
 
