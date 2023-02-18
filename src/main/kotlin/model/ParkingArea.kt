@@ -38,7 +38,7 @@ class ParkingArea {
         return parkingLot[spotNumber] == FREE
     }
 
-    fun bookSpotAt(spotNumber: Int) {
+    private fun bookSpotAt(spotNumber: Int) {
         parkingLot[spotNumber] = BOOK
     }
 

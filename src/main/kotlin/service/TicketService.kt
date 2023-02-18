@@ -4,7 +4,7 @@ import model.Ticket
 import repo.Repo
 
 object TicketService {
-    fun generateTicket(spotNumber:Int): Ticket {
+    fun generateTicket(spotNumber: Int): Ticket {
 
         val ticketNumber: Int = Repo.getTicketNumber()
 
