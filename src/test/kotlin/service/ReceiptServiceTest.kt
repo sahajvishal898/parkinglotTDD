@@ -1,6 +1,6 @@
 package service
 
-import model.Parking
+import model.ParkingArea
 import model.Receipt
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
@@ -20,9 +20,9 @@ class ReceiptServiceTest {
 
     @Test
     fun `should generate a receipt with fee 20 if vehicle parked for 2 hours`() {
-        val parking = Parking()
+        val parkingArea = ParkingArea()
 
-        val ticket = parking.parkCarAtParking()
+        val ticket = parkingArea.parkCarAtParking()
 
         val receipt: Receipt = ReceiptService.generateReceipt(ticket, LocalDateTime.now().plusHours(2))
 

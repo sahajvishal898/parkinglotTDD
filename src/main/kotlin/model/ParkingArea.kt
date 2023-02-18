@@ -9,7 +9,7 @@ import service.ReceiptService
 import service.TicketService
 import java.time.LocalDateTime
 
-class Parking {
+class ParkingArea {
     private val parkingLot = ArrayList<Int>()
 
     init {

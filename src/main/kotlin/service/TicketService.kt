@@ -1,7 +1,5 @@
 package service
 
-import exceptions.CustomException
-import model.Parking
 import model.Ticket
 import repo.Repo
 

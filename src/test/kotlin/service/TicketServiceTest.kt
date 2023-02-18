@@ -1,6 +1,6 @@
 package service
 
-import model.Parking
+import model.ParkingArea
 import model.Ticket
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
@@ -20,8 +20,8 @@ class TicketServiceTest {
     @Test
     fun `generate the first ticket with ticket number and spot number as 1 `() {
 
-        val parking = Parking()
-        val spotNumber=parking.getAvailableSpotNumber()!!
+        val parkingArea = ParkingArea()
+        val spotNumber=parkingArea.getAvailableSpotNumber()!!
 
         val ticket: Ticket = TicketService.generateTicket(spotNumber)
 
@@ -34,7 +34,7 @@ class TicketServiceTest {
     @Test
     fun `should generate the second ticket with ticket number 2 `() {
 
-        val parking = Parking()
+        val parkingArea = ParkingArea()
         val ticket1: Ticket = TicketService.generateTicket(1)
         val ticket2: Ticket = TicketService.generateTicket(2)
 
