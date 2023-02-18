@@ -65,7 +65,7 @@ class ParkingServiceTest {
 
         val ticket1: Ticket = parking.parkCarAtParking()
 
-        val receipt : Receipt = ParkingService.unparkCarFromSpot(parking,ticket1.getTicketNo(), LocalDateTime.now().plusHours(2))
+        val receipt : Receipt = parking.unparkCarFromSpot(ticket1.getTicketNo(), LocalDateTime.now().plusHours(2))
 
         Assertions.assertEquals(20,receipt.fee)
     }

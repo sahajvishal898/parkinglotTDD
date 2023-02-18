@@ -11,18 +11,6 @@ object ParkingService {
 
 
 
-    fun unparkCarFromSpot(
-        parking: Parking,
-        ticketNo: Int,
-        dateOfUnparking: LocalDateTime = LocalDateTime.now()
-    ): Receipt {
-
-        val ticket = Repo.getTicketWithTicketNo(ticketNo) ?: throw CustomException("No ticketno found")
-
-        parking.unparkVehicleFromSpot(ticketNo)
-
-        return ReceiptService.generateReceipt(ticket, dateOfUnparking)
-    }
 
 
 }

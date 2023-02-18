@@ -3,7 +3,9 @@ package model
 import exceptions.CustomException
 import lotSize
 import repo.Repo
+import service.ReceiptService
 import service.TicketService
+import java.time.LocalDateTime
 
 class Parking {
     private val parkingLot = ArrayList<Int>()
@@ -58,6 +60,15 @@ class Parking {
 
         return ticket
 
+    }
+
+    fun unparkCarFromSpot(ticketNo: Int,dateOfUnparking: LocalDateTime = LocalDateTime.now()): Receipt {
+
+        val ticket = Repo.getTicketWithTicketNo(ticketNo) ?: throw CustomException("No ticketno found")
+
+        unparkVehicleFromSpot(ticketNo)
+
+        return ReceiptService.generateReceipt(ticket, dateOfUnparking)
     }
 
 
