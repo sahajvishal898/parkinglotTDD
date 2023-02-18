@@ -22,7 +22,7 @@ class ParkingServiceTest {
 
         val parking = Parking()
 
-        val ticket: Ticket = ParkingService.parkCarAtParking(parking)
+        val ticket: Ticket = parking.parkCarAtParking()
 
         Assertions.assertEquals(1, ticket.getSpotNumber())
         Assertions.assertEquals(false, parking.isSpotAvailableAtSpot(ticket.getSpotNumber()))
@@ -33,8 +33,8 @@ class ParkingServiceTest {
 
         val parking = Parking()
 
-        val ticket1: Ticket = ParkingService.parkCarAtParking(parking)
-        val ticket2: Ticket = ParkingService.parkCarAtParking(parking)
+        val ticket1: Ticket = parking.parkCarAtParking()
+        val ticket2: Ticket = parking.parkCarAtParking()
 
         Assertions.assertEquals(1, ticket1.getSpotNumber())
         Assertions.assertEquals(false, parking.isSpotAvailableAtSpot(ticket1.getSpotNumber()))
@@ -49,7 +49,7 @@ class ParkingServiceTest {
 
         val parking = Parking()
 
-        val ticket1: Ticket = ParkingService.parkCarAtParking(parking)
+        val ticket1: Ticket = parking.parkCarAtParking()
 
         Assertions.assertEquals(1, ticket1.getSpotNumber())
         Assertions.assertEquals(false, parking.isSpotAvailableAtSpot(ticket1.getSpotNumber()))
@@ -63,7 +63,7 @@ class ParkingServiceTest {
 
         val parking = Parking()
 
-        val ticket1: Ticket = ParkingService.parkCarAtParking(parking)
+        val ticket1: Ticket = parking.parkCarAtParking()
 
         val receipt : Receipt = ParkingService.unparkCarFromSpot(parking,ticket1.getTicketNo(), LocalDateTime.now().plusHours(2))
 

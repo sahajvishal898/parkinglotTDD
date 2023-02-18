@@ -2,7 +2,7 @@ package model
 
 import java.time.LocalDateTime
 
-class Receipt(val receiptNo: Int, private val entryTime: LocalDateTime, val exitTime: LocalDateTime, val fee: Int) {
+class Receipt(val receiptNo: Int, private val entryTime: LocalDateTime, private val exitTime: LocalDateTime, val fee: Int) {
 
 
     fun getTotalFee(): Int {

@@ -8,26 +8,27 @@ import org.junit.jupiter.api.Test
 import repo.Repo
 import java.time.LocalDateTime
 
-class ReceiptServiceTest{
+class ReceiptServiceTest {
 
 
     @BeforeEach
     fun `clear all before each testcase`() {
         Repo.allTickets.clear()
-        Repo.parkingTicketNumber=0
-        Repo.unParkingreceiptNumber=0
+        Repo.parkingTicketNumber = 0
+        Repo.unParkingreceiptNumber = 0
     }
+
     @Test
-    fun `should generate a receipt with fee 20 if vehicle parked for 2 hours`(){
-        val parking=Parking()
+    fun `should generate a receipt with fee 20 if vehicle parked for 2 hours`() {
+        val parking = Parking()
 
-        val ticket=ParkingService.parkCarAtParking(parking)
+        val ticket = parking.parkCarAtParking()
 
-        val receipt:Receipt= ReceiptService.generateReceipt(ticket, LocalDateTime.now().plusHours(2))
+        val receipt: Receipt = ReceiptService.generateReceipt(ticket, LocalDateTime.now().plusHours(2))
 
-        Assertions.assertEquals(20,receipt.getTotalFee())
-        Assertions.assertEquals(1,receipt.receiptNo)
-        Assertions.assertEquals(ticket.getTicketDate(),receipt.getParkingDate())
+        Assertions.assertEquals(20, receipt.getTotalFee())
+        Assertions.assertEquals(1, receipt.receiptNo)
+        Assertions.assertEquals(ticket.getTicketDate(), receipt.getParkingDate())
     }
 
 

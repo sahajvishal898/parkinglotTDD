@@ -1,6 +1,9 @@
 package model
 
+import exceptions.CustomException
 import lotSize
+import repo.Repo
+import service.TicketService
 
 class Parking {
     private val parkingLot = ArrayList<Int>()
@@ -41,6 +44,20 @@ class Parking {
 
     fun unparkVehicleFromSpot(spotNumber: Int) {
         parkingLot[spotNumber] = 1
+    }
+
+    fun parkCarAtParking(): Ticket {
+
+        val ticket = TicketService.generateTicket(this)
+        Repo.addTicketToRepo(ticket)
+
+        val isCarParked = bookSpotAt(ticket.getSpotNumber())
+
+        if (!isCarParked)
+            throw CustomException("If car not parked")
+
+        return ticket
+
     }
 
 

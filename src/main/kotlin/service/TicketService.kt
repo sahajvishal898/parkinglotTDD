@@ -8,10 +8,10 @@ import repo.Repo
 object TicketService {
     fun generateTicket(parking: Parking): Ticket {
 
-        val ticketNumber:Int=Repo.getTicketNumber()
-        val spotNumber= parking.getAvailableSpotNumber() ?: throw CustomException("No spot available")
+        val ticketNumber: Int = Repo.getTicketNumber()
+        val spotNumber = parking.getAvailableSpotNumber() ?: throw CustomException("No spot available")
 
-        val ticket=Ticket(ticketNumber,spotNumber)
+        val ticket = Ticket(ticketNumber, spotNumber)
         return ticket
     }
 }
