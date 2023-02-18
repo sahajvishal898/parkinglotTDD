@@ -21,7 +21,9 @@ class TicketServiceTest {
     fun `generate the first ticket with ticket number and spot number as 1 `() {
 
         val parking = Parking()
-        val ticket: Ticket = TicketService.generateTicket(parking)
+        val spotNumber=parking.getAvailableSpotNumber()!!
+
+        val ticket: Ticket = TicketService.generateTicket(spotNumber)
 
         Assertions.assertEquals(1, ticket.getTicketNo())
         Assertions.assertEquals(1, ticket.getSpotNumber())
@@ -33,8 +35,8 @@ class TicketServiceTest {
     fun `should generate the second ticket with ticket number 2 `() {
 
         val parking = Parking()
-        val ticket1: Ticket = TicketService.generateTicket(parking)
-        val ticket2: Ticket = TicketService.generateTicket(parking)
+        val ticket1: Ticket = TicketService.generateTicket(1)
+        val ticket2: Ticket = TicketService.generateTicket(2)
 
         Assertions.assertEquals(1, ticket1.getTicketNo())
         Assertions.assertEquals(2, ticket2.getTicketNo())

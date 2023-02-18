@@ -6,12 +6,13 @@ import model.Ticket
 import repo.Repo
 
 object TicketService {
-    fun generateTicket(parking: Parking): Ticket {
+    fun generateTicket(spotNumber:Int): Ticket {
 
         val ticketNumber: Int = Repo.getTicketNumber()
-        val spotNumber = parking.getAvailableSpotNumber() ?: throw CustomException("No spot available")
 
         val ticket = Ticket(ticketNumber, spotNumber)
+        Repo.addTicketToRepo(ticket)
+
         return ticket
     }
 }

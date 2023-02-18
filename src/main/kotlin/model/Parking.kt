@@ -1,7 +1,9 @@
 package model
 
+import BOOK
+import FREE
 import exceptions.CustomException
-import lotSize
+import LOTSIZE
 import repo.Repo
 import service.ReceiptService
 import service.TicketService
@@ -11,13 +13,13 @@ class Parking {
     private val parkingLot = ArrayList<Int>()
 
     init {
-        for (index in 1..lotSize + 1)
-            parkingLot.add(1)
+        for (index in 1..LOTSIZE + 1)
+            parkingLot.add(FREE)
     }
 
     fun isSpotAvailable(): Boolean {
-        for (spot in 1..lotSize) {
-            if (parkingLot[spot] == 1)
+        for (spot in 1..LOTSIZE) {
+            if (parkingLot[spot] == FREE)
                 return true
         }
         return false
@@ -25,48 +27,40 @@ class Parking {
 
     fun getAvailableSpotNumber(): Int? {
 
-        for (spot in 1..lotSize) {
-            if (parkingLot[spot] == 1)
+        for (spot in 1..LOTSIZE) {
+            if (parkingLot[spot] == FREE)
                 return spot
         }
         return null
     }
 
     fun isSpotAvailableAtSpot(spotNumber: Int): Boolean {
-        return parkingLot[spotNumber] == 1
+        return parkingLot[spotNumber] == FREE
     }
 
-    fun bookSpotAt(spotNumber: Int): Boolean {
-
-        if (!isSpotAvailableAtSpot(spotNumber))
-            return false
-        parkingLot[spotNumber] = 0
-        return true
+    fun bookSpotAt(spotNumber: Int) {
+        parkingLot[spotNumber] = BOOK
     }
 
-    fun unparkVehicleFromSpot(spotNumber: Int) {
-        parkingLot[spotNumber] = 1
+    private fun unparkVehicleFromSpot(spotNumber: Int) {
+        parkingLot[spotNumber] = FREE
     }
 
     fun parkCarAtParking(): Ticket {
 
-        val ticket = TicketService.generateTicket(this)
-        Repo.addTicketToRepo(ticket)
+        val spotNumber = getAvailableSpotNumber() ?: throw CustomException("No spot available")
 
-        val isCarParked = bookSpotAt(ticket.getSpotNumber())
+        bookSpotAt(spotNumber)
 
-        if (!isCarParked)
-            throw CustomException("If car not parked")
-
-        return ticket
+        return TicketService.generateTicket(spotNumber)
 
     }
 
-    fun unparkCarFromSpot(ticketNo: Int,dateOfUnparking: LocalDateTime = LocalDateTime.now()): Receipt {
+    fun unparkCarFromSpot(ticketNo: Int, dateOfUnparking: LocalDateTime = LocalDateTime.now()): Receipt {
 
         val ticket = Repo.getTicketWithTicketNo(ticketNo) ?: throw CustomException("No ticketno found")
 
-        unparkVehicleFromSpot(ticketNo)
+        unparkVehicleFromSpot(ticket.getSpotNumber())
 
         return ReceiptService.generateReceipt(ticket, dateOfUnparking)
     }

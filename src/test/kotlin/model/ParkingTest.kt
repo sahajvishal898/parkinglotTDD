@@ -47,16 +47,5 @@ class ParkingTest {
         assertEquals(true, isSpotAvailableAtSpot)
     }
 
-    @Test
-    fun `should book spot at given spot number`() {
-
-        val parking = Parking()
-        val spotNumber = 2
-
-        val isBookingSpotSuccessful: Boolean = parking.bookSpotAt(spotNumber)
-
-        assertEquals(true, isBookingSpotSuccessful)
-    }
-
 
 }
