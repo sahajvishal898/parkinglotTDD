@@ -13,14 +13,12 @@ class ParkingArea {
     private val parkingLot = ArrayList<Int>()
 
     init {
-        for (index in 1..LOTSIZE + 1)
-            parkingLot.add(FREE)
+        for (index in 1..LOTSIZE + 1) parkingLot.add(FREE)
     }
 
     fun isSpotAvailable(): Boolean {
         for (spot in 1..LOTSIZE) {
-            if (parkingLot[spot] == FREE)
-                return true
+            if (parkingLot[spot] == FREE) return true
         }
         return false
     }
@@ -28,8 +26,7 @@ class ParkingArea {
     fun getAvailableSpotNumber(): Int? {
 
         for (spot in 1..LOTSIZE) {
-            if (parkingLot[spot] == FREE)
-                return spot
+            if (parkingLot[spot] == FREE) return spot
         }
         return null
     }
@@ -46,7 +43,7 @@ class ParkingArea {
         parkingLot[spotNumber] = FREE
     }
 
-    fun parkCarAtParking(): Ticket {
+    fun parkCarAtParkingArea(): Ticket {
 
         val spotNumber = getAvailableSpotNumber() ?: throw CustomException("No spot available")
 
