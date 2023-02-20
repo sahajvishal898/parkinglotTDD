@@ -53,9 +53,9 @@ class ParkingArea {
 
     }
 
-    fun unparkCarFromSpot(ticketNo: Int, dateOfUnparking: LocalDateTime = LocalDateTime.now()): Receipt {
+    fun unparkCarFromSpot(ticketNo: Int, dateOfUnparking: LocalDateTime = LocalDateTime.now()): Receipt? {
 
-        val ticket = Repo.getTicketWithTicketNo(ticketNo) ?: throw CustomException("No ticketno found")
+        val ticket = Repo.getTicketWithTicketNo(ticketNo) ?:   return  null
 
         unparkVehicleFromSpot(ticket.getSpotNumber())
 

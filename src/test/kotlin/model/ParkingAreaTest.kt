@@ -105,11 +105,11 @@ class ParkingAreaTest {
         val parkingArea = ParkingArea()
 
         val ticket1: Ticket? = parkingArea.parkCarAtParkingArea()
+        val receipt: Receipt? = parkingArea.unparkCarFromSpot(ticket1!!.getTicketNo(), LocalDateTime.now().plusHours(2))
 
         assertNotNull(ticket1)
-        val receipt: Receipt = parkingArea.unparkCarFromSpot(ticket1!!.getTicketNo(), LocalDateTime.now().plusHours(2))
-
-        assertEquals(20, receipt.fee)
+        assertNotNull(receipt)
+        assertEquals(20, receipt!!.fee)
     }
 
 
@@ -127,5 +127,13 @@ class ParkingAreaTest {
         assertNull(ticket)
     }
 
+    @Test
+    fun `should return the null if ticket number invalid while unparking`(){
+        val parkingArea = ParkingArea()
+
+        val receipt: Receipt? = parkingArea.unparkCarFromSpot(1, LocalDateTime.now().plusHours(2))
+
+        assertNull(receipt)
+    }
 
 }
