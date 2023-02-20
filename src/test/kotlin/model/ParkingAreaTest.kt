@@ -1,11 +1,13 @@
 package model
 
+import exceptions.CustomException
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import repo.Repo
 import java.time.LocalDateTime
+
 
 class ParkingAreaTest {
 
@@ -57,9 +59,10 @@ class ParkingAreaTest {
 
         val parkingArea = ParkingArea()
 
-        val ticket: Ticket = parkingArea.parkCarAtParkingArea()
+        val ticket: Ticket? = parkingArea.parkCarAtParkingArea()
 
-        assertEquals(1, ticket.getSpotNumber())
+        assertNotNull(ticket)
+        assertEquals(1, ticket!!.getSpotNumber())
         assertEquals(false, parkingArea.isSpotAvailableAtSpot(ticket.getSpotNumber()))
     }
 
@@ -68,13 +71,15 @@ class ParkingAreaTest {
 
         val parkingArea = ParkingArea()
 
-        val ticket1: Ticket = parkingArea.parkCarAtParkingArea()
-        val ticket2: Ticket = parkingArea.parkCarAtParkingArea()
+        val ticket1: Ticket? = parkingArea.parkCarAtParkingArea()
+        val ticket2: Ticket? = parkingArea.parkCarAtParkingArea()
 
-        assertEquals(1, ticket1.getSpotNumber())
+        assertNotNull(ticket1)
+        assertEquals(1, ticket1!!.getSpotNumber())
         assertEquals(false, parkingArea.isSpotAvailableAtSpot(ticket1.getSpotNumber()))
 
-        assertEquals(2, ticket2.getSpotNumber())
+        assertNotNull(ticket1)
+        assertEquals(2, ticket2!!.getSpotNumber())
         assertEquals(false, parkingArea.isSpotAvailableAtSpot(ticket2.getSpotNumber()))
     }
 
@@ -84,9 +89,10 @@ class ParkingAreaTest {
 
         val parkingArea = ParkingArea()
 
-        val ticket1: Ticket = parkingArea.parkCarAtParkingArea()
+        val ticket1: Ticket? = parkingArea.parkCarAtParkingArea()
 
-        assertEquals(1, ticket1.getSpotNumber())
+        assertNotNull(ticket1)
+        assertEquals(1, ticket1!!.getSpotNumber())
         assertEquals(false, parkingArea.isSpotAvailableAtSpot(ticket1.getSpotNumber()))
         assertEquals(true, Repo.allTickets.containsKey(ticket1.getTicketNo()))
 
@@ -98,11 +104,27 @@ class ParkingAreaTest {
 
         val parkingArea = ParkingArea()
 
-        val ticket1: Ticket = parkingArea.parkCarAtParkingArea()
+        val ticket1: Ticket? = parkingArea.parkCarAtParkingArea()
 
-        val receipt: Receipt = parkingArea.unparkCarFromSpot(ticket1.getTicketNo(), LocalDateTime.now().plusHours(2))
+        assertNotNull(ticket1)
+        val receipt: Receipt = parkingArea.unparkCarFromSpot(ticket1!!.getTicketNo(), LocalDateTime.now().plusHours(2))
 
         assertEquals(20, receipt.fee)
+    }
+
+
+    @Test
+
+    fun `should return the null if all spots are booked`(){
+        val parkingArea = ParkingArea()
+
+        for(cnt in 1..100){
+            parkingArea.parkCarAtParkingArea()
+        }
+
+        val ticket=parkingArea.parkCarAtParkingArea()
+
+        assertNull(ticket)
     }
 
 

@@ -22,7 +22,7 @@ class ReceiptServiceTest {
     fun `should generate a receipt with fee 20 if vehicle parked for 2 hours`() {
         val parkingArea = ParkingArea()
 
-        val ticket = parkingArea.parkCarAtParkingArea()
+        val ticket = parkingArea.parkCarAtParkingArea()!!
 
         val receipt: Receipt = ReceiptService.generateReceipt(ticket, LocalDateTime.now().plusHours(2))
 

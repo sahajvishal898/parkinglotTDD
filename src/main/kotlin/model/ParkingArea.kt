@@ -43,9 +43,9 @@ class ParkingArea {
         parkingLot[spotNumber] = FREE
     }
 
-    fun parkCarAtParkingArea(): Ticket {
+    fun parkCarAtParkingArea(): Ticket? {
 
-        val spotNumber = getAvailableSpotNumber() ?: throw CustomException("No spot available")
+        val spotNumber = getAvailableSpotNumber() ?: return null
 
         bookSpotAt(spotNumber)
 
