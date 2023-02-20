@@ -1,7 +1,5 @@
 package model
 
-import exceptions.CustomException
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -37,7 +35,7 @@ class ParkingAreaTest {
 
         val spotNumber: Int? = parkingArea.getAvailableSpotNumber()
 
-        Assertions.assertNotNull(spotNumber)
+        assertNotNull(spotNumber)
         assertEquals(1, spotNumber)
     }
 
@@ -115,20 +113,20 @@ class ParkingAreaTest {
 
     @Test
 
-    fun `should return the null if all spots are booked`(){
+    fun `should return the null if all spots are booked`() {
         val parkingArea = ParkingArea()
 
-        for(cnt in 1..100){
+        for (cnt in 1..100) {
             parkingArea.parkCarAtParkingArea()
         }
 
-        val ticket=parkingArea.parkCarAtParkingArea()
+        val ticket = parkingArea.parkCarAtParkingArea()
 
         assertNull(ticket)
     }
 
     @Test
-    fun `should return the null if ticket number invalid while unparking`(){
+    fun `should return the null if ticket number invalid while unparking`() {
         val parkingArea = ParkingArea()
 
         val receipt: Receipt? = parkingArea.unparkCarFromSpot(1, LocalDateTime.now().plusHours(2))

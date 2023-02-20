@@ -2,7 +2,6 @@ package model
 
 import BOOK
 import FREE
-import exceptions.CustomException
 import LOTSIZE
 import repo.Repo
 import service.ReceiptService
@@ -55,7 +54,7 @@ class ParkingArea {
 
     fun unparkCarFromSpot(ticketNo: Int, dateOfUnparking: LocalDateTime = LocalDateTime.now()): Receipt? {
 
-        val ticket = Repo.getTicketWithTicketNo(ticketNo) ?:   return  null
+        val ticket = Repo.getTicketWithTicketNo(ticketNo) ?: return null
 
         unparkVehicleFromSpot(ticket.getSpotNumber())
 
